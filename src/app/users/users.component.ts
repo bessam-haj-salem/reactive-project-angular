@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { combineLatestWith, Observable, map, of } from 'rxjs';
+import { combineLatestWith, Observable, map, of, merge, tap, scan } from 'rxjs';
 import { UserModel } from './models/user.model';
 import { UserService } from './services/user.service';
 import { UserServiceModel } from './services/users.service.model';
@@ -24,12 +24,29 @@ export class UsersComponent implements OnInit {
   filterChange(value: string) {
     this.userService.getFilterUser(value);
   }
- addUser() {
-
- }
+ 
   listUsers() {
+    // users
+    let users$ = merge(
+      this.users$,
+      this.userService.userAdded$
+    )
+    .pipe(
+      tap(data => console.log(data)),
+      scan((acc:UserModel[],value:any ) => {
+         console.log(acc);
+         console.log(value);
+         const index = acc.findIndex(user => user.id === value.id);
+         console.log(index)
+         if(index !== -1) {
+          acc[index] = value
+          return acc
+         }
+         return [...acc, value]
+      })
+    )
     let filter$: Observable<string> = this.userService.filterUser$;
-    this.filteredUsers$ = this.createFilterUser(filter$, this.users$);
+    this.filteredUsers$ = this.createFilterUser(filter$, users$);
   }
   addShow(event:any) {
     // console.log(event);

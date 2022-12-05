@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormControlDirective, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-add-user',
@@ -11,7 +13,7 @@ export class AddUserComponent implements OnInit {
   @Input() show = ""
   userAddForm: FormGroup;
 
-  constructor(private fb: FormBuilder) { 
+  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) { 
     this.userAddForm = this.fb.group({
       id: new FormControl('', [Validators.required]),
       name: new FormControl('', [Validators.required]),
@@ -46,8 +48,9 @@ export class AddUserComponent implements OnInit {
     return this.userAddForm.get('email');
   }
   onSubmitAdd() {
-    let formValue = this.userAddForm.value();
-    console.log(formValue)
+    let formValue = this.userAddForm.value;
+   this.userService.insertUser(formValue);
+   this.router.navigate([''])
    
      
   }

@@ -6,6 +6,7 @@ export interface UserServiceModel {
      getFilterUser(value:string):void;
      filterUser$: Observable<string>;
      addUser(user: UserModel):void;
+     userAdded$: Observable<UserModel>;
 
 
 }

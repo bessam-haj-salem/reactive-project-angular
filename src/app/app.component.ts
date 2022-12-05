@@ -8,7 +8,6 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'pilote';
   logOnChangedetection() {
-    console.log("root called");
     return true
   }
 }
