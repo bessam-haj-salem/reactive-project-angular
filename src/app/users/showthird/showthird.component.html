@@ -1,0 +1,10 @@
+<ng-container *ngIf="logOnChangedetection()"></ng-container>
+
+<div class="show">
+  <p>showthird</p>  
+  <!-- <p *rxLet="dummyService.dummy$ as val">{{val}}</p> -->
+    <p>{{dummyService.dummy$ | push}}</p>
+
+    <button class="btn btn-primary" (click)="third()">Third</button>
+</div>
+

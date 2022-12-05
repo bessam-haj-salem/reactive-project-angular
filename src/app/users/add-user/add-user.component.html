@@ -1,0 +1,113 @@
+<!-- <ng-container *ngIf="logOnChangedetection()"></ng-container> -->
+<!-- <div class="btn btn-success"  (click)="trigger()">
+    trigger
+</div> -->
+<!-- <h2>
+    {{show}}
+</h2> -->
+<!-- <app-showfirst></app-showfirst> -->
+<div class="container my-5">
+  
+            <h2>Add User</h2>
+
+            <form [formGroup]="userAddForm" (ngSubmit)="onSubmitAdd()" #ref>
+                <div class="row">
+                  <div class="col-md-6 my-2" >
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="idUser"
+                        placeholder="id"
+                        formControlName="id"
+              
+                      />
+                      <div *ngIf="id!.invalid && (id!.dirty || id!.touched)" class="alert alert-danger">
+                        Id not added
+                       </div>
+                    </div>
+                   
+                  </div>
+                  <div class="col-md-6 my-2">
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="exampleFormControlInput1"
+                        placeholder="name"
+                        formControlName="name"
+              
+                      />
+                      <div *ngIf="name!.invalid && (name!.dirty || name!.touched)" class="alert alert-danger">
+                        name not added
+                       </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 my-2">
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="exampleFormControlInput1"
+                        placeholder="username"
+                        formControlName="username"
+              
+                      />
+                      <div *ngIf="username!.invalid && (username!.dirty || username!.touched)" class="alert alert-danger">
+                        username not added
+                       </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 my-2">
+                    <div class="form-group">
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="exampleFormControlInput1"
+                        placeholder="nom@example.com"
+                        formControlName="email"
+              
+                      />
+                      <div *ngIf="email!.invalid && (email!.dirty || email!.touched)" class="alert alert-danger">
+                        email not added
+                       </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 my-2">
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="exampleFormControlInput1"
+                        placeholder="phone"
+                        formControlName="phone"
+              
+                      />
+                      <div *ngIf="phone!.invalid && (phone!.dirty || phone!.touched)" class="alert alert-danger">
+                        phone not added
+                       </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 my-2">
+                      <div class="form-group">
+                        <button type="button" (click)="onSubmitAdd()"class="btn btn-primary">Confirmer</button>
+                      </div>
+                    </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 my-2">
+                    <div class="form-group"></div>
+                  </div>
+                 
+                </div>
+              </form>
+   
+    
+</div>
+
+  
+   

@@ -1,0 +1,55 @@
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormControlDirective, FormGroup, Validators } from '@angular/forms';
+
+@Component({
+  selector: 'app-add-user',
+  templateUrl: './add-user.component.html',
+  styleUrls: ['./add-user.component.scss']
+})
+export class AddUserComponent implements OnInit {
+  @Output() showEvent = new EventEmitter<number>()
+  @Input() show = ""
+  userAddForm: FormGroup;
+
+  constructor(private fb: FormBuilder) { 
+    this.userAddForm = this.fb.group({
+      id: new FormControl('', [Validators.required]),
+      name: new FormControl('', [Validators.required]),
+      username: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required]),
+      phone:new FormControl('', [Validators.required])
+    })
+  }
+
+  ngOnInit(): void {
+  }
+  logOnChangedetection() {
+    console.log("add user called");
+    return true
+  }
+  trigger() {
+    this.showEvent.emit(9)
+  }
+  get name() {
+    return this.userAddForm.get('name');
+  }
+  get id() {
+    return this.userAddForm.get('id');
+  }
+  get username() {
+    return this.userAddForm.get('username');
+  }
+  get phone() {
+    return this.userAddForm.get('phone');
+  }
+  get email() {
+    return this.userAddForm.get('email');
+  }
+  onSubmitAdd() {
+    let formValue = this.userAddForm.value();
+    console.log(formValue)
+   
+     
+  }
+
+}
